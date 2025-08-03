@@ -7,6 +7,7 @@ export default [
   {
     rules: {
       'react/no-multi-comp': 'off',
+      'react-refresh/only-export-components': 'off',
     },
   },
 ];

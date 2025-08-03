@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-button",
+  "type": "registry:ui",
+  "dependencies": [
+    "radix-ui",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/icon-button.tsx",
+      "content": "import { type VariantProps, cva } from 'class-variance-authority';\nimport { Loader2 } from 'lucide-react';\nimport { Slot } from 'radix-ui';\nimport { forwardRef, memo } from 'react';\n\nimport { cn } from '@/lib/utils';\n\nexport const iconButtonVariants = cva(\n  'focus-visible:ring-ring inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md text-sm font-medium shadow-black/5 transition-all focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 hover:scale-110 active:scale-100 [&_svg]:stroke-[1.5]',\n  {\n    variants: {\n      variant: {\n        default:\n          'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',\n        destructive:\n          'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',\n        outline:\n          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',\n        secondary:\n          'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',\n        ghost:\n          'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',\n        link: 'text-primary underline-offset-4 hover:underline',\n      },\n      size: {\n        xs: 'size-7 rounded-md [&_svg]:size-4',\n        sm: 'size-8 rounded-md [&_svg]:size-4',\n        md: 'size-9 [&_svg]:size-4.5',\n        lg: '[&_svg]:size-5 size-10 rounded-md',\n        xl: 'size-11 rounded-md [&_svg]:size-6',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'md',\n    },\n  },\n);\n\nexport interface IconButtonProps\n  extends React.ComponentProps<'button'>,\n    VariantProps<typeof iconButtonVariants> {\n  asChild?: boolean;\n  loading?: boolean;\n  circle?: boolean;\n}\n\nexport const IconButton = memo(\n  forwardRef<HTMLButtonElement, IconButtonProps>(\n    (\n      {\n        className,\n        children,\n        type = 'button',\n        variant,\n        size,\n        asChild = false,\n        loading = false,\n        circle = false,\n        ...restProps\n      },\n      ref,\n    ) => {\n      const Comp = asChild ? Slot.Root : 'button';\n      const content = loading ? <Loader2 className='animate-spin' /> : children;\n\n      return (\n        <Comp\n          type={asChild ? undefined : type}\n          className={cn(\n            iconButtonVariants({\n              variant,\n              size,\n            }),\n            circle && 'rounded-full',\n            className,\n          )}\n          disabled={loading}\n          ref={ref}\n          {...restProps}\n        >\n          {content}\n        </Comp>\n      );\n    },\n  ),\n);\n",
+      "type": "registry:component"
+    }
+  ]
+}

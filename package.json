@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -30,6 +31,7 @@
     "@types/react-dom": "19.1.7",
     "@utima/eslint-config": "^0.19.0",
     "eslint": "8",
+    "husky": "^9.1.7",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
