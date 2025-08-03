@@ -49,7 +49,7 @@ export default function Home() {
               A simple hello world component
             </h2>
             <div className='flex gap-2'>
-              <CopyRegistryButton />
+              <CopyRegistryButton name='hello-world' />
               <OpenInV0Button name='hello-world' className='w-fit' />
             </div>
           </div>
